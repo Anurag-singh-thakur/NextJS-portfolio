@@ -1,12 +1,12 @@
 import { cn } from '../../app/lib/utils';
 import {
   IconLayoutNavbarCollapse,
-  IconHome,
+  IconHome2,
   IconUser,
-  IconSettings,
-  IconMail,
-  IconArticle,
+  IconBrandCodepen,
   IconBriefcase,
+  IconArticle,
+  IconMailFast,
 } from "@tabler/icons-react";
 import {
   AnimatePresence,
@@ -19,12 +19,45 @@ import {
 import Link from "next/link";
 import { useRef, useState } from "react";
 
+export const NAVIGATION_ITEMS = [
+  {
+    title: "Home",
+    icon: <IconHome2 className="text-blue-500" />,
+    href: "/#home"
+  },
+  {
+    title: "About",
+    icon: <IconUser className="text-green-500" />,
+    href: "/#about"
+  },
+  {
+    title: "Skills",
+    icon: <IconBrandCodepen className="text-purple-500" />,
+    href: "/#skills"
+  },
+  {
+    title: "Projects",
+    icon: <IconBriefcase className="text-orange-500" />,
+    href: "/#projects"
+  },
+  {
+    title: "Blogs",
+    icon: <IconArticle className="text-red-500" />,
+    href: "/#blogs"
+  },
+  {
+    title: "Contact",
+    icon: <IconMailFast className="text-teal-500" />,
+    href: "/#contact"
+  }
+];
+
 export const FloatingDock = ({
-  items,
+  items = NAVIGATION_ITEMS,
   desktopClassName,
   mobileClassName,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items?: { title: string; icon: React.ReactNode; href: string }[];
   desktopClassName?: string;
   mobileClassName?: string;
 }) => {
@@ -104,7 +137,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "fixed top-0 left-1/2 transform -translate-x-1/2 flex justify-center h-16 gap-4 items-center bg-gradient-to-b from-gray-900 to-black px-4 pb-3 shadow-lg z-10 rounded-full",
+        "fixed top-4 left-1/2 transform -translate-x-1/2 flex justify-center h-16 gap-4 items-center bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl px-4 pb-3 z-50 rounded-full",
         className
       )}
     >

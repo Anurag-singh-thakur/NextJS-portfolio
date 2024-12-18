@@ -8,23 +8,47 @@ import SkillsSection from './sections/SkillsSection';
 import ProjectsSection from './sections/ProjectsSection';
 import BlogsSection from './sections/BlogSection';
 import ContactSection from './sections/ContactSection';
-import {
-  IconHome,
-  IconUser,
-  IconSettings,
-  IconMail,
-  IconArticle,
-  IconBriefcase,
-} from '@tabler/icons-react';
+import { 
+  PiHouseLight, 
+  PiUserLight, 
+  PiCodeLight, 
+  PiBriefcaseLight, 
+  PiBookOpenLight, 
+  PiPaperPlaneLight 
+} from 'react-icons/pi';
 
 const Home: React.FC = () => {
   const items = [
-    { title: 'Home', icon: <IconHome />, href: '#home' },
-    { title: 'About', icon: <IconUser />, href: '#about' },
-    { title: 'Skills', icon: <IconSettings />, href: '#skills' },
-    { title: 'Projects', icon: <IconBriefcase />, href: '#projects' },
-    { title: 'Blogs', icon: <IconArticle />, href: '#blogs' },
-    { title: 'Contact', icon: <IconMail />, href: '#contact' },
+    { 
+      title: 'Home', 
+      icon: <PiHouseLight size={40} className="text-blue-600 group-hover:text-blue-800 transition-colors" />, 
+      href: '#home' 
+    },
+    { 
+      title: 'About', 
+      icon: <PiUserLight size={40} className="text-green-600 group-hover:text-green-800 transition-colors" />, 
+      href: '#about' 
+    },
+    { 
+      title: 'Skills', 
+      icon: <PiCodeLight size={40} className="text-purple-600 group-hover:text-purple-800 transition-colors" />, 
+      href: '#skills' 
+    },
+    { 
+      title: 'Projects', 
+      icon: <PiBriefcaseLight size={40} className="text-orange-600 group-hover:text-orange-800 transition-colors" />, 
+      href: '#projects' 
+    },
+    { 
+      title: 'Blogs', 
+      icon: <PiBookOpenLight size={40} className="text-red-600 group-hover:text-red-800 transition-colors" />, 
+      href: '#blogs' 
+    },
+    { 
+      title: 'Contact', 
+      icon: <PiPaperPlaneLight size={40} className="text-teal-600 group-hover:text-teal-800 transition-colors" />, 
+      href: '#contact' 
+    },
   ];
 
   const pageVariants = {
