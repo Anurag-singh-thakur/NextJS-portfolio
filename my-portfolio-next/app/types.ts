@@ -19,5 +19,14 @@ export interface Project {
 export interface Blog {
   _id: string;
   title: string;
+  slug: {
+    current: string;
+  };
+  description: string;
   content: string;
+  images?: any[];
+  author: string;
+  publishedAt: string;
+  tags?: string[];
+  readTime?: number;
 }

@@ -81,7 +81,7 @@ export default function ProjectDetailClient({
               className="flex items-center bg-[#1e2433] px-4 py-2 rounded-full shadow-md hover:bg-[#2a3342] transition-colors"
             >
               <FaArrowLeft className="mr-2" /> 
-              <span className="text-sm font-medium">Back to Portfolio</span>
+              <span className="text-sm font-medium"></span>
             </motion.div>
           </Link>
         </div>
