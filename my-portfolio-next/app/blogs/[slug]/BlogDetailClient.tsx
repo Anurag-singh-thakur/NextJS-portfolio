@@ -1,25 +1,25 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import { motion, useTransform,  useScroll } from 'framer-motion';
 import Link from 'next/link';
-import { 
-  FaArrowLeft, 
-  FaCalendar, 
-  FaUser, 
-  FaClock, 
-  FaChevronLeft, 
+import {
+  FaArrowLeft,
+  FaCalendar,
+  FaUser,
+  FaClock,
+  FaChevronLeft,
   FaChevronRight,
   FaCode,
   FaLaptopCode,
   FaDatabase
 } from 'react-icons/fa';
-import { 
-  SiJavascript, 
-  SiTypescript, 
-  SiNextdotjs, 
-  SiReact, 
-  SiNodedotjs 
+import {
+  SiJavascript,
+  SiTypescript,
+  SiNextdotjs,
+  SiReact,
+  SiNodedotjs
 } from 'react-icons/si';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '@/sanityClient';
@@ -33,14 +33,25 @@ function urlFor(source: any) {
 }
 
 const BACKGROUND_ICONS = [
-  { icon: <FaCode size={60} />, className: 'text-green-400 opacity-100' },
-  { icon: <FaLaptopCode size={60} />, className: 'text-blue-400 opacity-100' },
-  { icon: <FaDatabase size={60} />, className: 'text-red-400 opacity-100' },
-  { icon: <SiJavascript size={60} />, className: 'text-yellow-500 opacity-100' },
-  { icon: <SiTypescript size={60} />, className: 'text-blue-500 opacity-100' },
-  { icon: <SiNextdotjs size={60} />, className: 'text-black opacity-100' },
-  { icon: <SiReact size={60} />, className: 'text-cyan-400 opacity-100' },
-  { icon: <SiNodedotjs size={60} />, className: 'text-green-600 opacity-100' },
+  { 
+    icon: <FaCode size={60} />,
+    className: 'text-green-400 opacity-100',
+    position:{top: '10%' , left : '5%' }
+ },
+  { icon: 
+  <FaLaptopCode size={60} />,
+   className: 'text-blue-400 opacity-100',
+   position:{top: '10%' , left : '5%' }
+   },
+  { icon: <FaDatabase size={60} />,
+   className: 'text-red-400 opacity-100' ,
+   position:{top: '20%' , left : '85%' }
+  },
+  { icon: <SiJavascript size={60} />, className: 'text-yellow-500 opacity-100' , position:{top: '50%' , left : '15%' } },
+  { icon: <SiTypescript size={60} />, className: 'text-blue-500 opacity-100' , position:{top: '60%' , left : '85%' } },
+  { icon: <SiNextdotjs size={60} />, className: 'text-black opacity-100' , position:{top: '70%' , left : '5%' } },
+  { icon: <SiReact size={60} />, className: 'text-cyan-400 opacity-100' , position:{top: '80%' , left : '85%' } },
+  { icon: <SiNodedotjs size={60} />, className: 'text-green-600 opacity-100' , position:{top: '90%' , left : '15%' } },
 ];
 
 const floatingVariants = {
@@ -57,20 +68,20 @@ const floatingVariants = {
   },
 };
 
-export default function BlogDetailClient({ 
-  initialBlog 
-}: { 
-  initialBlog: Blog | null 
+export default function BlogDetailClient({
+  initialBlog
+}: {
+  initialBlog: Blog | null
 }) {
   const [blog, setBlog] = useState<Blog | null>(initialBlog);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const handleNextImage = () => {
     if (blog?.images && blog.images.length > 0) {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         (prevIndex + 1) % blog.images.length
       );
     }
@@ -78,7 +89,7 @@ export default function BlogDetailClient({
 
   const handlePrevImage = () => {
     if (blog?.images && blog.images.length > 0) {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? blog.images.length - 1 : prevIndex - 1
       );
     }
@@ -106,7 +117,7 @@ export default function BlogDetailClient({
   const readTime = calculateReadTime(blog.content);
 
   return (
-    <motion.div 
+    <motion.div
       style={{ scale, opacity }}
       className="min-h-screen w-full bg-gradient-to-b from-[#1a202c] via-[#121212] to-[#0b0b0b] text-white relative overflow-hidden"
     >
@@ -131,12 +142,12 @@ export default function BlogDetailClient({
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="relative mb-8">
           <Link href="/" className="inline-block text-white hover:text-primary transition-colors">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="flex items-center bg-secondary/20 px-4 py-2 rounded-full border border-secondary/30 hover:border-primary transition-all"
             >
-              <FaArrowLeft className="mr-2" /> 
+              <FaArrowLeft className="mr-2" />
               <span className="text-sm font-medium"></span>
             </motion.div>
           </Link>
@@ -153,8 +164,8 @@ export default function BlogDetailClient({
         {blog.images && blog.images.length > 0 && (
           <div className="w-full max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden shadow-2xl relative group">
             <div className="w-full h-[500px] relative">
-              <motion.img 
-                src={urlFor(blog.images[currentImageIndex]).url()} 
+              <motion.img
+                src={urlFor(blog.images[currentImageIndex]).url()}
                 alt={`${blog.title} - Image ${currentImageIndex + 1}`}
                 className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110"
                 initial={{ scale: 1 }}
@@ -226,8 +237,8 @@ export default function BlogDetailClient({
             </h3>
             <div className="flex flex-wrap gap-3">
               {blog.tags.map((tag, index) => (
-                <span 
-                  key={index} 
+                <span
+                  key={index}
                   className="bg-secondary/30 text-secondary/80 px-4 py-2 rounded-full text-sm 
                              border border-secondary/40 hover:border-primary transition-all"
                 >

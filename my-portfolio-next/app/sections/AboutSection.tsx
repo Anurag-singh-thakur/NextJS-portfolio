@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useTransform, useViewportScroll, AnimatePresence } from 'framer-motion';
+import { motion, useTransform, useScroll, AnimatePresence } from 'framer-motion';
 import { 
   FaCode, 
   FaLaptopCode, 
@@ -90,7 +90,7 @@ const SKILLS = [
 
 const AboutSection: React.FC = () => {
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
   const [activeCategory, setActiveCategory] = useState('Frontend');

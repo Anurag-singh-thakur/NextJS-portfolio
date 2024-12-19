@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import { client } from '@/sanityClient';
 import { Project } from '../types';
 import imageUrlBuilder from '@sanity/image-url';
@@ -65,7 +65,7 @@ const ProjectsSection: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: string]: number }>({});
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 

@@ -1,5 +1,4 @@
-'use client' // Ensure this is at the top
-
+'use client' 
 import { motion } from 'framer-motion';
 import { FloatingDock } from './components/Header';
 import HomeSection from './sections/HomeSection';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import { client } from '@/sanityClient';
 import imageUrlBuilder from '@sanity/image-url';
 import { 
@@ -59,7 +59,7 @@ const floatingVariants = {
 const SkillsSection: React.FC = () => {
   const [skills, setSkills] = useState<any[]>([]);
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 

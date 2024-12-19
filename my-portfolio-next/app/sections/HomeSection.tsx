@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import { 
   FaCode, 
   FaLaptopCode, 
@@ -34,7 +34,7 @@ const floatingVariants = {
 
 const HomeSection: React.FC = () => {
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
   const rotate = useTransform(scrollYProgress, [0, 0.5], [0, -5]);
 

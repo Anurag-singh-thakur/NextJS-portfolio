@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { 
   FaArrowLeft, 
@@ -31,14 +31,25 @@ function urlFor(source: any) {
 }
 
 const BACKGROUND_ICONS = [
-  { icon: <FaCode size={60} />, className: 'text-green-400 opacity-100' },
-  { icon: <FaLaptopCode size={60} />, className: 'text-blue-400 opacity-100' },
-  { icon: <FaDatabase size={60} />, className: 'text-red-400 opacity-100' },
-  { icon: <SiJavascript size={60} />, className: 'text-yellow-500 opacity-100' },
-  { icon: <SiTypescript size={60} />, className: 'text-blue-500 opacity-100' },
-  { icon: <SiNextdotjs size={60} />, className: 'text-black opacity-100' },
-  { icon: <SiReact size={60} />, className: 'text-cyan-400 opacity-100' },
-  { icon: <SiNodedotjs size={60} />, className: 'text-green-600 opacity-100' },
+  { 
+    icon: <FaCode size={60} />,
+    className: 'text-green-400 opacity-100',
+    position:{top: '10%' , left : '5%' }
+ },
+  { icon: 
+  <FaLaptopCode size={60} />,
+   className: 'text-blue-400 opacity-100',
+   position:{top: '10%' , left : '5%' }
+   },
+  { icon: <FaDatabase size={60} />,
+   className: 'text-red-400 opacity-100' ,
+   position:{top: '20%' , left : '85%' }
+  },
+  { icon: <SiJavascript size={60} />, className: 'text-yellow-500 opacity-100' , position:{top: '50%' , left : '15%' } },
+  { icon: <SiTypescript size={60} />, className: 'text-blue-500 opacity-100' , position:{top: '60%' , left : '85%' } },
+  { icon: <SiNextdotjs size={60} />, className: 'text-black opacity-100' , position:{top: '70%' , left : '5%' } },
+  { icon: <SiReact size={60} />, className: 'text-cyan-400 opacity-100' , position:{top: '80%' , left : '85%' } },
+  { icon: <SiNodedotjs size={60} />, className: 'text-green-600 opacity-100' , position:{top: '90%' , left : '15%' } },
 ];
 
 const floatingVariants = {
@@ -62,7 +73,7 @@ export default function ProjectDetailClient({
 }) {
   const [project, setProject] = React.useState<Project | null>(initialProject);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { scrollYProgress } = useViewportScroll();
+  const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
@@ -133,8 +144,6 @@ export default function ProjectDetailClient({
             {project.title}
           </h1>
         </div>
-
-        {/* Image Gallery */}
         {project.images && project.images.length > 0 && (
           <div className="w-full max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden shadow-2xl relative group">
             <div className="w-full h-[500px] relative">
