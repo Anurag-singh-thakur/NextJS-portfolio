@@ -36,15 +36,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  // Use a function to safely resolve the slug
-  const resolveSlug = async () => {
-    // Ensure params.slug is a string and not undefined
-    return params.slug ? String(params.slug) : '';
-  };
-
-  const slug = await resolveSlug();
+  const { slug } = await params; // Await the promise here
   
   const project = await getProjectDetails(slug);
   
@@ -54,20 +48,18 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
-  // Use a function to safely resolve the slug
-  const resolveSlug = async () => {
-    // Ensure params.slug is a string and not undefined
-    return params.slug ? String(params.slug) : '';
-  };
-
-  const slug = await resolveSlug();
+  const { slug } = await params; // Await the promise here
   
   const project = await getProjectDetails(slug);
+
+  if (!project) {
+    return <div>Project not found.</div>;
+  }
 
   return <ProjectDetailClient initialProject={project} />;
 }

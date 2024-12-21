@@ -1,4 +1,3 @@
-// app/sections/BlogSection.tsx
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import Link from 'next/link';
@@ -201,7 +200,7 @@ export default function BlogSection() {
                             >
                               <FaArrowRight className="transform rotate-180" />
                             </motion.button>
-                            <motion.button 
+ <motion.button 
                               onClick={() => handleNextImage(blog._id, blog.images.length)}
                               className="text-white hover:text-primary"
                               whileHover={{ scale: 1.2 }}

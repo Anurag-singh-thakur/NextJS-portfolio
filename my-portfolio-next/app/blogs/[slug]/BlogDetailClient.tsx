@@ -1,7 +1,6 @@
 "use client";
-
 import React, { useState, useEffect } from 'react';
-import { motion, useTransform,  useScroll } from 'framer-motion';
+import { motion, useTransform, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import {
   FaArrowLeft,
@@ -33,25 +32,14 @@ function urlFor(source: any) {
 }
 
 const BACKGROUND_ICONS = [
-  { 
-    icon: <FaCode size={60} />,
-    className: 'text-green-400 opacity-100',
-    position:{top: '10%' , left : '5%' }
- },
-  { icon: 
-  <FaLaptopCode size={60} />,
-   className: 'text-blue-400 opacity-100',
-   position:{top: '10%' , left : '5%' }
-   },
-  { icon: <FaDatabase size={60} />,
-   className: 'text-red-400 opacity-100' ,
-   position:{top: '20%' , left : '85%' }
-  },
-  { icon: <SiJavascript size={60} />, className: 'text-yellow-500 opacity-100' , position:{top: '50%' , left : '15%' } },
-  { icon: <SiTypescript size={60} />, className: 'text-blue-500 opacity-100' , position:{top: '60%' , left : '85%' } },
-  { icon: <SiNextdotjs size={60} />, className: 'text-black opacity-100' , position:{top: '70%' , left : '5%' } },
-  { icon: <SiReact size={60} />, className: 'text-cyan-400 opacity-100' , position:{top: '80%' , left : '85%' } },
-  { icon: <SiNodedotjs size={60} />, className: 'text-green-600 opacity-100' , position:{top: '90%' , left : '15%' } },
+  { icon: <FaCode size={60} />, className: 'text-green-400 opacity-100' },
+  { icon: <FaLaptopCode size={60} />, className: 'text-blue-400 opacity-100' },
+  { icon: <FaDatabase size={60} />, className: 'text-red-400 opacity-100' },
+  { icon: <SiJavascript size={60} />, className: 'text-yellow-500 opacity-100' },
+  { icon: <SiTypescript size={60} />, className: 'text-blue-500 opacity-100' },
+  { icon: <SiNextdotjs size={60} />, className: 'text-black opacity-100' },
+  { icon: <SiReact size={60} />, className: 'text-cyan-400 opacity-100' },
+  { icon: <SiNodedotjs size={60} />, className: 'text-green-600 opacity-100' },
 ];
 
 const floatingVariants = {
@@ -76,6 +64,7 @@ export default function BlogDetailClient({
   const [blog, setBlog] = useState<Blog | null>(initialBlog);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { scrollYProgress } = useScroll();
+  const [randomPositions, setRandomPositions] = useState<{ top: string; left: string; fontSize: string }[]>([]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
@@ -98,6 +87,15 @@ export default function BlogDetailClient({
   useEffect(() => {
     setBlog(initialBlog);
   }, [initialBlog]);
+
+  useEffect(() => {
+    const positions = BACKGROUND_ICONS.map(() => ({
+      top: `${Math.random() * 90}%`,
+      left: `${Math.random() * 90}%`,
+      fontSize: `${Math.random() * 4 + 3}rem`
+    }));
+    setRandomPositions(positions);
+  }, []);
 
   if (!blog) {
     return (
@@ -130,9 +128,9 @@ export default function BlogDetailClient({
           animate="animate"
           className={`absolute z-0 ${item.className}`}
           style={{
-            top: `${Math.random() * 90}%`,
-            left: `${Math.random() * 90}%`,
-            fontSize: `${Math.random() * 4 + 3}rem`
+            top: randomPositions[index]?.top,
+            left: randomPositions[index]?.left,
+            fontSize: randomPositions[index]?.fontSize
           }}
         >
           {item.icon}
