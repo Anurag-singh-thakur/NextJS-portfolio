@@ -88,7 +88,7 @@ const CONTACT_OPTIONS = [
   {
     icon: <FaPhone />,
     name: 'Phone',
-    href: 'tel:+11234567890',
+    href: 'tel:+91 9719877462',
     color: 'text-green-500 hover:text-green-700',
     description: 'Call Me'
   }
@@ -119,7 +119,8 @@ const ContactSection: React.FC = () => {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '', 
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '', 
-        formRef.current || undefined, 
+        formRef.current! ,
+        
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
       )
       setStatus('success')

@@ -26,7 +26,7 @@ export default function BlogSection() {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-
+ 
   useEffect(() => {
     async function fetchBlogs() {
       const blogsData = await client.fetch(`*[_type == "blog"] | order(publishedAt desc) {
@@ -124,13 +124,25 @@ export default function BlogSection() {
                   )}
                   <div className="absolute top-0 left-0 right-0 flex justify-between p-2">
                     <button 
-                      onClick={() => handlePrevImage(blog._id, blog.images.length)} 
+                      onClick={() => {
+                        if (blog.images) {
+                          handlePrevImage(blog._id, blog.images.length);
+                        } else {
+                          console.warn('No images available');
+                        }
+                      }}
                       className="bg-gray-700 hover:bg-gray-600 rounded-full p-1"
                     >
                       &lt;
                     </button>
                     <button 
-                      onClick={() => handleNextImage(blog._id, blog.images.length)} 
+                     onClick={() => {
+                      if (blog.images) {
+                        handleNextImage(blog._id, blog.images.length);
+                      } else {
+                        console.warn('No images available');
+                      }
+                    }}
                       className="bg-gray-700 hover:bg-gray-600 rounded-full p-1"
                     >
                       &gt;
