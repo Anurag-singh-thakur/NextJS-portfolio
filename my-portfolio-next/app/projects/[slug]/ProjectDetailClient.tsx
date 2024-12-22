@@ -88,16 +88,16 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
 
-  const handleNextImage = () => {
-    if (project?.images && project.images.length > 0) {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % project.images.length)
+  const handleNextImage = (images:string[]) => {
+    if (images && images.length > 0) {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images?.length)
     }
   }
 
-  const handlePrevImage = () => {
-    if (project?.images && project.images.length > 0) {
+  const handlePrevImage = (images:string[]) => {
+    if (images && images.length > 0) {
       setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? project.images.length - 1 : prevIndex - 1,
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1,
       )
     }
   }
@@ -168,7 +168,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
             {project.images.length > 1 && (
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
                 <motion.button
-                  onClick={handlePrevImage}
+                 onClick={()=>handlePrevImage(project.images||[])}
                   whileHover={{scale: 1.1}}
                   whileTap={{scale: 0.9}}
                   className="bg-secondary/20 text-secondary/80 hover:text-primary 
@@ -183,7 +183,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
                 </span>
 
                 <motion.button
-                  onClick={handleNextImage}
+                 onClick={()=>handleNextImage(project.images||[])}
                   whileHover={{scale: 1.1}}
                   whileTap={{scale: 0.9}}
                   className="bg-secondary/20 text-secondary/80 hover:text-primary 
