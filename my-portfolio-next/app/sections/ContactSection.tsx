@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import emailjs from '@emailjs/browser';
+import React, { useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 import { 
   FaPaperPlane, 
   FaLinkedin, 
@@ -16,110 +16,86 @@ import {
   FaPhone,
   FaMapMarkerAlt,
   FaCode
-} from 'react-icons/fa';
+} from 'react-icons/fa'
 import { 
-  SiLeetcode, 
-  SiHashnode,
-  SiMedium,
-  SiHackerrank
-} from 'react-icons/si';
+  SiLeetcode
+} from 'react-icons/si'
 
 const CONTACT_OPTIONS = [
   {
-    icon: <FaLinkedin size={40} />,
+    icon: <FaLinkedin />,
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/your-profile',
+    href: 'https://www.linkedin.com/in/anurag-kumar-b64140284/',
     color: 'text-blue-600 hover:text-blue-800',
     description: 'Professional Network'
   },
   {
-    icon: <FaGithub size={40} />,
+    icon: <FaGithub />,
     name: 'GitHub',
-    href: 'https://github.com/your-username',
+    href: 'https://github.com/Anurag-singh-thakur',
     color: 'text-gray-800 hover:text-gray-600',
     description: 'Code Repositories'
   },
   {
-    icon: <SiLeetcode size={40} />,
+    icon: <SiLeetcode />,
     name: 'LeetCode', 
-    href: 'https://leetcode.com/your-username',
+    href: 'https://leetcode.com/u/anurag_rajput_013/',
     color: 'text-yellow-500 hover:text-yellow-700',
     description: 'Coding Challenges'
   },
   {
-    icon: <FaCode size={40} />,
+    icon: <FaCode />,
     name: 'GeeksforGeeks',
-    href: 'https://auth.geeksforgeeks.org/user/your-username',
+    href: 'https://www.geeksforgeeks.org/user/singhanutxbu/',
     color: 'text-green-500 hover:text-green-700',
     description: 'Coding Platform'
   },
   {
-    icon: <SiHackerrank size={40} />,
-    name: 'HackerRank',
-    href: 'https://www.hackerrank.com/your-username',
-    color: 'text-green-600 hover:text-green-800',
-    description: 'Programming Skills'
-  },
-  {
-    icon: <SiHashnode size={40} />,
-    name: 'Hashnode',
-    href: 'https://hashnode.com/@your-username',
-    color: 'text-blue-700 hover:text-blue-900',
-    description: 'Tech Blog'
-  },
-  {
-    icon: <SiMedium size={40} />,
-    name: 'Medium',
-    href: 'https://medium.com/@your-username',
-    color: 'text-black hover:text-gray-800',
-    description: 'Articles & Thoughts'
-  },
-  {
-    icon: <FaTwitter size={40} />,
+    icon: <FaTwitter />,
     name: 'Twitter/X',
-    href: 'https://twitter.com/your-username',
+    href: 'https://x.com/anurags013',
     color: 'text-blue-400 hover:text-blue-600',
     description: 'Social Media'
   },
   {
-    icon: <FaInstagram size={40} />,
+    icon: <FaInstagram />,
     name: 'Instagram',
-    href: 'https://www.instagram.com/your-username',
+    href: 'https://www.instagram.com/4nurag_rajput/profilecard/?igsh=aHc4azd4c2dxaG55',
     color: 'text-pink-500 hover:text-pink-700',
     description: 'Personal Moments'
   },
   {
-    icon: <FaDiscord size={40} />,
+    icon: <FaDiscord />,
     name: 'Discord',
     href: 'https://discord.com/users/your-username',
     color: 'text-purple-500 hover:text-purple-700',
     description: 'Community'
   },
   {
-    icon: <FaWhatsapp size={40} />,
+    icon: <FaWhatsapp />,
     name: 'WhatsApp',
-    href: 'https://wa.me/your-phone-number',
+    href: 'https://wa.me/9719877462',
     color: 'text-green-500 hover:text-green-600',
     description: 'Direct Messaging'
   },
   {
-    icon: <FaEnvelope size={40} />,
+    icon: <FaEnvelope />,
     name: 'Email',
-    href: 'mailto:your.email@example.com',
+    href: 'mailto:singhanurag1309@gmail.com',
     color: 'text-red-500 hover:text-red-700',
     description: 'Direct Contact'
   },
   {
-    icon: <FaPhone size={40} />,
+    icon: <FaPhone />,
     name: 'Phone',
     href: 'tel:+11234567890',
     color: 'text-green-500 hover:text-green-700',
     description: 'Call Me'
   }
-];
+]
 
 const ContactSection: React.FC = () => {
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -127,26 +103,26 @@ const ContactSection: React.FC = () => {
     company: '',
     subject: '',
     message: ''
-  });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [selectedContact, setSelectedContact] = useState<any>(null);
+  })
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [selectedContact, setSelectedContact] = useState<any>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
+    e.preventDefault()
+    setStatus('sending')
     try {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '', 
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '', 
         formRef.current || undefined, 
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
-      );
-      setStatus('success');
+      )
+      setStatus('success')
       setFormData({
         name: '',
         email: '',
@@ -154,17 +130,17 @@ const ContactSection: React.FC = () => {
         company: '',
         subject: '',
         message: ''
-      });
+      })
     } catch (error) {
-      console.error('Email send error:', error);
-      setStatus('error');
+      console.error('Email send error:', error)
+      setStatus('error')
     }
-  };
+  }
 
   return (
     <section 
       id="contact" 
-      className="min-h-screen text-white py-16 relative overflow-hidden "
+      className="min-h-screen text-white py-16 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2 
@@ -181,7 +157,7 @@ const ContactSection: React.FC = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className=" rounded-xl shadow-2xl border border-gray-800 overflow-hidden"
+          className="rounded-xl shadow-2xl border border-gray-800 overflow-hidden max-w-3xl mx-auto"
         >
           <div className="bg-[#2c2c2c] p-4 flex items-center space-x-2">
             <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -315,14 +291,15 @@ const ContactSection: React.FC = () => {
           </form>
         </motion.div>
 
-        {/* MacOS-style Dock */}
+        {/* Responsive Contact Options */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="fixed bottom-8 inset-x-0 flex justify-center z-50"
+          className="mt-16"
         >
-          <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl px-4 py-3 inline-flex items-center space-x-4">
+          <h3 className="text-2xl font-semibold text-center mb-8">Connect With Me</h3>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 justify-items-center">
             {CONTACT_OPTIONS.map((contact, index) => (
               <motion.a
                 key={index}
@@ -330,43 +307,21 @@ const ContactSection: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`relative group ${contact.color}`}
-                whileHover={{ 
-                  scale: 1.2,
-                  translateY: -10
-                }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 300, 
-                  damping: 10 
-                }}
-                onHoverStart={() => setSelectedContact(contact)}
-                onHoverEnd={() => setSelectedContact(null)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {React.cloneElement(contact.icon, { size: 30 })}
+                <div className="flex flex-col items-center">
+                  {React.cloneElement(contact.icon, { size: 40 })}
+                  <span className="mt-2 text-xs text-center">{contact.name}</span>
+                </div>
               </motion.a>
             ))}
           </div>
-          
-          {/* Hover Information */}
-          <AnimatePresence>
-            {selectedContact && (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="absolute left-1/2 transform -translate-x-1/2 -top-16 
-                  bg-white/20 backdrop-blur-xl rounded-lg 
-                  px-4 py-2 text-center shadow-lg"
-              >
-                <h4 className="text-sm font-semibold">{selectedContact.name}</h4>
-                <p className="text-xs text-gray-300">{selectedContact.description}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default ContactSection;
+export default ContactSection
+

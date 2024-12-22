@@ -2,7 +2,7 @@ import { cn } from '../../app/lib/utils';
 import {
   IconLayoutNavbarCollapse,
   IconHome2,
-  IconUser,
+  IconUser ,
   IconBrandCodepen,
   IconBriefcase,
   IconArticle,
@@ -22,32 +22,32 @@ import { useRef, useState } from "react";
 export const NAVIGATION_ITEMS = [
   {
     title: "Home",
-    icon: <IconHome2 className="text-blue-500" />,
+    icon: <IconHome2 className="text-blue-400" />,
     href: "/#home"
   },
   {
     title: "About",
-    icon: <IconUser className="text-green-500" />,
+    icon: <IconUser  className="text-green-400" />,
     href: "/#about"
   },
   {
     title: "Skills",
-    icon: <IconBrandCodepen className="text-purple-500" />,
+    icon: <IconBrandCodepen className="text-purple-400" />,
     href: "/#skills"
   },
   {
     title: "Projects",
-    icon: <IconBriefcase className="text-orange-500" />,
+    icon: <IconBriefcase className="text-orange-400" />,
     href: "/#projects"
   },
   {
     title: "Blogs",
-    icon: <IconArticle className="text-red-500" />,
+    icon: <IconArticle className="text-red-400" />,
     href: "/#blogs"
   },
   {
     title: "Contact",
-    icon: <IconMailFast className="text-teal-500" />,
+    icon: <IconMailFast className="text-teal-400" />,
     href: "/#contact"
   }
 ];
@@ -83,7 +83,7 @@ const FloatingDockMobile = ({
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2 bg-gradient-to-b from-gray-900 to-black"
+            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2 bg-black bg-opacity-70 rounded-lg"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -105,9 +105,9 @@ const FloatingDockMobile = ({
                 <Link
                   href={item.href}
                   key={item.title}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+                  className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center"
                 >
-                  <div className="h-4 w-4 text-white dark:text-gray-400">{item.icon}</div>
+                  <div className="h-4 w-4 text-white">{item.icon}</div>
                 </Link>
               </motion.div>
             ))}
@@ -116,9 +116,9 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center"
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className="h-5 w-5 text-white" />
       </button>
     </div>
   );
@@ -137,7 +137,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "fixed top-4 left-1/2 transform -translate-x-1/2 flex justify-center h-16 gap-4 items-center bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl px-4 pb-3 z-50 rounded-full",
+        "fixed top-4 left-1/2 transform -translate-x-1/2 flex justify-center h-16 gap-4 items-center bg-black bg-opacity-70 backdrop-blur-lg border border-gray-700 shadow-2xl px-4 pb-3 z-50 rounded-full",
         className
       )}
     >
@@ -208,11 +208,11 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex flex-col items-center justify-center relative"
+        className="aspect-square rounded-full bg-gray-800 flex flex-col items-center justify-center relative"
       >
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center text-white dark:text-gray-400"
+          className="flex items-center justify-center text-white"
         >
           {icon}
         </motion.div>
@@ -222,7 +222,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 0, x: "-50%" }}
               animate={{ opacity: 1, y: -40, x: "-50%" }}
               exit={{ opacity: 0, y: 0, x: "-50%" }}
-              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-xs"
+              className="px-2 py-0.5 whitespace-pre rounded-md bg-black bg-opacity-80 border border-gray-700 text-white absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-xs"
             >
               {title}
             </motion.div>

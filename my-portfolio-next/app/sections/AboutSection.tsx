@@ -1,206 +1,148 @@
-'use client'
-
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  FaCode, 
-  FaLaptopCode, 
-  FaDatabase, 
-  FaNodeJs, 
-  FaReact, 
-  FaGithub, 
-  FaHackerrank,
-  FaUniversity,
-  FaAward
-} from 'react-icons/fa'
-import { 
-  SiJavascript, 
-  SiTypescript, 
-  SiHtml5, 
-  SiCss3, 
-  SiC, 
-  SiCplusplus, 
-  SiMongodb, 
-  SiLeetcode,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiPython,
-  SiDocker,
-  SiKubernetes
-} from 'react-icons/si'
-
-const SKILLS = [
-  { 
-    category: 'Frontend', 
-    skills: [
-      { name: 'React', icon: <SiJavascript size={28} className="text-yellow-500" />, level: 95 },
-      { name: 'Next.js', icon: <SiNextdotjs size={28} className="text-black" />, level: 90 },
-      { name: 'Tailwind CSS', icon: <SiTailwindcss size={28} className="text-teal-400" />, level: 88 },
-      { name: 'HTML5', icon: <SiHtml5 size={28} className="text-orange-500" />, level: 98 },
-      { name: 'CSS3', icon: <SiCss3 size={28} className="text-blue-500" />, level: 92 },
-    ]
-  },
-  { 
-    category: 'Backend', 
-    skills: [
-      { name: 'Node.js', icon: <FaNodeJs size={28} className="text-green-600" />, level: 90 },
-      { name: 'MongoDB', icon: <SiMongodb size={28} className="text-green-500" />, level: 85 },
-      { name: 'TypeScript', icon: <SiTypescript size={28} className="text-blue-500" />, level: 88 },
-    ]
-  },
-  { 
-    category: 'Programming', 
-    skills: [
-      { name: 'C', icon: <SiC size={28} className="text-purple-500" />, level: 95 },
-      { name: 'C++', icon: <SiCplusplus size={28} className="text-blue-600" />, level: 92 },
-      { name: 'Python', icon: <SiPython size={28} className="text-blue-400" />, level: 85 },
-    ]
-  },
-  { 
-    category: 'DevOps', 
-    skills: [
-      { name: 'Docker', icon: <SiDocker size={28} className="text-blue-600" />, level: 75 },
-      { name: 'Kubernetes', icon: <SiKubernetes size={28} className="text-blue-400" />, level: 70 },
-      { name: 'GitHub', icon: <FaGithub size={28} className="text-gray-600" />, level: 90 },
-    ]
-  }
-]
-
-const techIcons = [
-  { icon: <FaCode size={40} />, className: 'text-green-400' },
-  { icon: <FaLaptopCode size={40} />, className: 'text-blue-400' },
-  { icon: <FaDatabase size={40} />, className: 'text-red-400' },
-  { icon: <FaNodeJs size={40} />, className: 'text-yellow-400' },
-  { icon: <FaReact size={40} />, className: 'text-cyan-400' },
-  { icon: <SiJavascript size={40} />, className: 'text-yellow-500' },
-  { icon: <SiTypescript size={40} />, className: 'text-blue-500' },
-  { icon: <SiHtml5 size={40} />, className: 'text-orange-500' },
-  { icon: <SiCss3 size={40} />, className: 'text-blue-400' },
-  { icon: <SiC size={40} />, className: 'text-purple-500' },
-  { icon: <SiCplusplus size={40} />, className: 'text-blue-600' },
-  { icon: <SiMongodb size={40} />, className: 'text-green-500' },
-  { icon: <SiNextdotjs size={40} />, className: 'text-black' },
-  { icon: <SiTailwindcss size={40} />, className: 'text-teal-400' },
-  { icon: <FaGithub size={40} />, className: 'text-gray-600' },
-  { icon: <FaHackerrank size={40} />, className: 'text-green-600' },
-  { icon: <SiLeetcode size={40} />, className: 'text-orange-400' },
-]
-
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail, ExternalLink, User, Briefcase, GraduationCap, MapPin } from 'lucide-react';
 const AboutSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('Frontend')
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const categories = SKILLS.map(s => s.category)
-      const currentIndex = categories.indexOf(activeCategory)
-      const nextIndex = (currentIndex + 1) % categories.length
-      setActiveCategory(categories[nextIndex])
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [activeCategory])
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:singhanurag1309@gmail.com?subject=Regarding Your Portfolio';
+  };
 
   return (
-    <section 
-      id="about" 
-      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white p-6 relative overflow-hidden"
-    >
-      {techIcons.map((item, index) => (
+    <section className="min-h-screen bg-black py-10 sm:py-20 px-4 relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: [0.2, 0.5, 0.2],
-            scale: 1,
-            y: [0, -20, 0],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: Math.random() * 3 + 2,
-            delay: Math.random() * 2,
-          }}
-          className={`absolute z-0 ${item.className}`}
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
         >
-          {item.icon}
-        </motion.div>
-      ))}
-
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="w-full max-w-4xl relative z-10 bg-white/10 backdrop-blur-lg p-8 rounded-3xl shadow-2xl"
-      >
-        <motion.div 
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center justify-center mb-8"
-        >
-          <FaUniversity className="text-blue-300 mr-4" size={40} />
-          <h2 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">About Me</h2>
-          <FaAward className="text-purple-300 ml-4" size={40} />
-        </motion.div>
-
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {SKILLS.map(({ category }) => (
-            <motion.button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeCategory === category 
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white' 
-                  : 'bg-white/20 text-white hover:bg-white/30'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          {/* Profile Image Section */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
             >
-              {category}
-            </motion.button>
-          ))}
-        </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {SKILLS.find(s => s.category === activeCategory)?.skills.map((skill) => (
-              <motion.div 
-                key={skill.name}
-                className="bg-white/20 p-4 rounded-xl flex flex-col items-center space-y-3 backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
-                onHoverStart={() => setHoveredSkill(skill.name)}
-                onHoverEnd={() => setHoveredSkill(null)}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-4xl">{skill.icon}</div>
-                <h3 className="text-lg font-semibold">{skill.name}</h3>
-                <div className="w-full bg-gray-200 rounded-full h-2 relative overflow-hidden">
-                  <motion.div 
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-400 to-purple-600"
-                    initial={{ width: 0 }}
-                    animate={{ width: hoveredSkill === skill.name ? `${skill.level}%` : '0%' }}
-                    transition={{ duration: 1, ease: "easeOut" }}
+              <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-blue-500/20 p-2">
+                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600">
+                  <img
+                    src="/Images/147986964.png"
+                    alt="Profile"
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <span className="text-sm font-medium">{skill.level}%</span>
-              </motion.div>
-            ))}
+              </div>
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex space-x-4">
+                <motion.a
+                  whileHover={{ y: -5 }}
+                  target='_blank'
+                  href="https://github.com/Anurag-singh-thakur"
+                  className="bg-gray-800 p-3 rounded-full text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Github size={20} />
+                </motion.a>
+                <motion.a
+                  whileHover={{ y: -5 }}
+                  href="https://www.linkedin.com/in/anurag-kumar-b64140284/"
+                  target='_blank'
+                  className="bg-gray-800 p-3 rounded-full text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Linkedin size={20} />
+                </motion.a>
+                <motion.a
+                onClick={handleEmailClick}
+                  whileHover={{ y: -5 }}
+                  className="bg-gray-800 p-3 rounded-full text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <Mail size={20} />
+                </motion.a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Content Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-7 text-center lg:text-left"
+          >
+            <div className="space-y-6">
+              <div>
+                {/* <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 mb-2">
+                 Anurag Kumar
+                </h1> */}
+                <p className="text-xl text-gray-400">Full Stack Developer|DSA|TypeScript|Next.JS </p>
+              </div>
+
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Passionate about creating elegant solutions to complex problems. With over 2 years of experience
+                in full-stack development, I specialize in building scalable web applications and mentoring
+                development teams.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300">
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gray-800/50 p-2 rounded-lg">
+                    <Briefcase size={20} className="text-blue-400" />
+                  </div>
+                  <span>Computer Science Student at Jaypee University </span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gray-800/50 p-2 rounded-lg">
+                    <GraduationCap size={20} className="text-purple-400" />
+                  </div>
+                  <span>B.Tech in Computer Science💻</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gray-800/50 p-2 rounded-lg">
+                    <MapPin size={20} className="text-green-400" />
+                  </div>
+                  <span>Agra, IN</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="bg-gray-800/50 p-2 rounded-lg">
+                    <User size={20} className="text-yellow-400" />
+                  </div>
+                  <span>Open to Opportunities</span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <motion.button
+                onClick={handleEmailClick}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-medium flex items-center space-x-2 hover:opacity-90 transition-opacity"
+                >
+                  <Mail size={18} />
+                  <span>Contact Me</span>
+                </motion.button>
+                <motion.a
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  href="https://drive.google.com/file/d/1Jkwf0Hj4iniR1XfDTs2Aq-x_jpXkhL22/view?usp=sharing" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="px-6 py-3 bg-gray-800 rounded-full text-gray-300 font-medium flex items-center space-x-2 hover:bg-gray-700 transition-colors"
+>
+  <ExternalLink size={18} />
+  <span>View Resume</span>
+</motion.a>
+              </div>
+            </div>
           </motion.div>
-        </AnimatePresence>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default AboutSection
-
+export default AboutSection;
