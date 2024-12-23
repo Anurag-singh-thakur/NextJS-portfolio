@@ -33,12 +33,13 @@ const AboutSection: React.FC = () => {
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-blue-500/20 p-2">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 relative">
                   <Image
-                    src="/Images/147986964.png"
+                    src="https://drive.google.com/uc?export=download&id=1dsrGOi5n5CnWxneNlxCKae1J-cr3uG6m"
                     alt="Profile"
                     layout='fill'
                     objectFit='cover'
                     objectPosition='center'
                     className="absolute top-0 left-0" 
+                    priority
                   />
                 </div>
               </div>

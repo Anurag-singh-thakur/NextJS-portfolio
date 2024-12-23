@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -10,6 +12,7 @@ const HomeSection: React.FC = () => {
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-black">
+      <div className="absolute inset-0  bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-16 lg:py-0">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -27,12 +30,12 @@ const HomeSection: React.FC = () => {
               >
                 <h2 className="text-sm sm:text-base text-blue-400 font-medium mb-2">Welcome to my portfolio</h2>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-                  Hi, I&apos;m 
+                  Hi, I&apos;m{' '}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
                     Anurag Kumar
                   </span>
                 </h1>
-                <p className="text-xl sm:text-2xl text-gray-400">
+                <p className="text-xl sm:text-2xl text-gray-300">
                   Aspiring Full Stack Developer
                 </p>
               </motion.div>
@@ -79,21 +82,25 @@ const HomeSection: React.FC = () => {
                 }}
                 className="relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
-                <Image
-                  src="/images/p7.jpg"
-                  alt="Anurag Kumar"
-                  height={128}
-                  width={128}
-                  className="relative w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-3xl shadow-2xl"
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+                <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                  <Image
+                    src="/Images/new.jpg"             
+                    alt="Anurag Kumar"
+                    layout="fill"
+                    objectFit="cover"
+                    quality={100}
+                    priority
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </div>
         </div>
-    </div>
+      </div>
     </section>
   );
 };
 
 export default HomeSection;
+
