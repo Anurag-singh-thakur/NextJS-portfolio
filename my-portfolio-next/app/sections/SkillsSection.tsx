@@ -1,11 +1,10 @@
 'use client'
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { client } from '@/sanityClient';
 import imageUrlBuilder from '@sanity/image-url';
+import Image from 'next/image';
 
-// Image URL builder
 const builder = imageUrlBuilder(client);
 function urlFor(source: any) {
   return builder.image(source);
@@ -110,9 +109,11 @@ const SkillsSection: React.FC = () => {
               >
                 <div className="flex flex-col items-center">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 mb-2 sm:mb-4 flex items-center justify-center">
-                    <img 
+                    <Image
                       src={urlFor(skill.image).url()} 
                       alt={skill.name} 
+                      height={128}
+                      width={128}
                       className="max-w-full max-h-full object-contain"
                     />
                   </div>
@@ -128,8 +129,6 @@ const SkillsSection: React.FC = () => {
           </AnimatePresence>
         </motion.div>
       </div>
-
-      {/* Modal */}
       <AnimatePresence>
         {isModalOpen && selectedSkill && (
           <motion.div
@@ -147,10 +146,12 @@ const SkillsSection: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center mb-4">
-                <img 
+                <Image
                   src={urlFor(selectedSkill.image).url()} 
                   alt={selectedSkill.name} 
                   className="w-16 h-16 object-contain mr-4"
+                  height={128}
+                  width={128}
                 />
                 <div>
                   <h3 className="text-xl font-bold text-white">{selectedSkill.name}</h3>

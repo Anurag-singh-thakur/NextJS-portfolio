@@ -8,14 +8,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
-  // Increase header size limits
   httpAgentOptions: {
     keepAlive: true,
   },
-  webpack: (config, { isServer }) => {
-    // Reduce chunk size for better performance
+  webpack: (config: any, { isServer }: { isServer: boolean }) => { 
     config.optimization.splitChunks = {
       chunks: 'all',
       maxSize: 250000,
@@ -23,11 +27,8 @@ const nextConfig = {
 
     return config;
   },
-  // Compress responses
   compress: true,
-  // Disable x-powered-by header for security
   poweredByHeader: false,
-  // Performance optimizations
   productionBrowserSourceMaps: false,
 }
 

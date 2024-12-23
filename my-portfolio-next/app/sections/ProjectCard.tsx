@@ -1,4 +1,3 @@
-// ProjectCard.tsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaArrowLeft, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
@@ -6,6 +5,7 @@ import Link from 'next/link';
 import { Project } from '../types';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '@/sanityClient';
+import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
@@ -58,13 +58,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       <div className="relative h-48 w-full overflow-hidden">
         {project.images && project.images.length > 0 ? (
           <>
-            <motion.img 
-              src={urlFor(project.images[currentImageIndex]).url()} 
-              alt={project.title} 
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-              initial={{ scale: 1 }}
-              whileHover={{ scale: 1.1 }}
-            />
+             <motion.div
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        className="absolute top-0 left-0 w-full h-full"
+      >
+        <Image
+          src={urlFor(project.images[currentImageIndex]).url()} 
+          alt={`${project.title} - Image ${currentImageIndex + 1}`}
+          layout="fill"
+          objectFit="cover"
+          className="transition-transform duration-300 group-hover:scale-110"
+        />
+      </motion.div>
             {project.images.length > 1 && (
               <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center px-4 py-2 bg-black/60">
                 <span className="text-white text-xs">

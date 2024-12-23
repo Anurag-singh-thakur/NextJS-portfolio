@@ -13,7 +13,7 @@ export default {
         title: 'Skill Image',
         type: 'image',
         options: {
-          hotspot: true, // Enables image cropping
+          hotspot: true, 
         },
       },
     ],

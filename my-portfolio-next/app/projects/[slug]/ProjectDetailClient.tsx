@@ -3,6 +3,7 @@
 import React, {useState} from 'react'
 import {motion, useTransform, useScroll} from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   FaArrowLeft,
   FaGithub,
@@ -116,7 +117,6 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
       style={{scale, opacity}}
       className="min-h-screen w-full bg-gradient-to-b from-[#1a202c] via-[#121212] to-[#0b0b0b] text-white relative overflow-hidden"
     >
-      {/* Floating Background Icons */}
       {BACKGROUND_ICONS.map((item, index) => (
         <motion.div
           key={index}
@@ -147,22 +147,22 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
             </motion.div>
           </Link>
         </div>
-
-        {/* Project Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-200">{project.title}</h1>
         </div>
         {project.images && project.images.length > 0 && (
           <div className="w-full max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden shadow-2xl relative group">
-            <div className="w-full h-[500px] relative">
-              <motion.img
-                src={urlFor(project.images[currentImageIndex]).url()}
-                alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110"
-                initial={{scale: 1}}
-                whileHover={{scale: 1.1}}
-              />
-            </div>
+           <div className="w-full h-[500px] relative">
+      <Image
+        src={urlFor(project.images[currentImageIndex]).url()} 
+        alt={`${project.title} - Image ${currentImageIndex + 1}`}
+        layout="fill" 
+        objectFit="cover"
+        height={128}
+        // width={128}
+        className="absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110"
+      />
+    </div>
 
             {/* Navigation Buttons */}
             {project.images.length > 1 && (

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   FaArrowLeft,
   FaCalendar,

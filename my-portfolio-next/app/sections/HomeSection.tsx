@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Code, Laptop, Database, FileCode, Blocks, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const HomeSection: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -9,42 +10,10 @@ const HomeSection: React.FC = () => {
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-black">
-      {/* Background Icons */}
-      {/* <div className="absolute inset-0">
-        {[
-          { Icon: Code, color: 'text-green-400' },
-          { Icon: Laptop, color: 'text-blue-400' },
-          { Icon: Database, color: 'text-red-400' },
-          { Icon: FileCode, color: 'text-yellow-400' },
-          { Icon: Blocks, color: 'text-purple-400' }
-        ].map(({ Icon, color }, index) => (
-          <motion.div
-            key={index}
-            initial={{ y: 0, opacity: 0.2 }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              y: { repeat: Infinity, repeatType: 'loop', duration: 3 },
-              opacity: { repeat: Infinity, repeatType: 'loop', duration: 3 }
-            }}
-            className={`absolute z-0 ${color} opacity-20`}
-            style={{
-              top: `${Math.random() * 90 + 5}%`,
-              left: `${Math.random() * 90 + 5}%`
-            }}
-          >
-            <Icon size={60} />
-          </motion.div>
-        ))}
-      </div> */}
-
-      {/* Main Content */}
+   
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-16 lg:py-0">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Text Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -96,8 +65,6 @@ const HomeSection: React.FC = () => {
                 </motion.a>
               </motion.div>
             </motion.div>
-
-            {/* Right Column - Image */}
             <motion.div 
               className="flex justify-center lg:justify-end"
               style={{ scale, opacity }}
@@ -114,9 +81,11 @@ const HomeSection: React.FC = () => {
                 className="relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
-                <img
+                <Image
                   src="/images/p7.jpg"
                   alt="Anurag Kumar"
+                  height={128}
+                  width={128}
                   className="relative w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-3xl shadow-2xl"
                 />
               </motion.div>

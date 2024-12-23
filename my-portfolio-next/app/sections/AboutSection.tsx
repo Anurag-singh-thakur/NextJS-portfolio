@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Github, Linkedin, Mail, ExternalLink, User, Briefcase, GraduationCap, MapPin } from 'lucide-react';
 const AboutSection: React.FC = () => {
 
@@ -31,11 +32,14 @@ const AboutSection: React.FC = () => {
               className="relative"
             >
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-blue-500/20 p-2">
-                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600">
-                  <img
+                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600 relative">
+                  <Image
                     src="/Images/147986964.png"
                     alt="Profile"
-                    className="w-full h-full object-cover"
+                    layout='fill'
+                    objectFit='cover'
+                    objectPosition='center'
+                    className="absolute top-0 left-0" 
                   />
                 </div>
               </div>
@@ -76,9 +80,6 @@ const AboutSection: React.FC = () => {
           >
             <div className="space-y-6">
               <div>
-                {/* <h1 className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500 mb-2">
-                 Anurag Kumar
-                </h1> */}
                 <p className="text-xl text-gray-400">Full Stack Developer|DSA|TypeScript|Next.JS </p>
               </div>
 

@@ -38,7 +38,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params; // Await the promise here
+  const { slug } = await params; 
   
   const project = await getProjectDetails(slug);
   
@@ -53,7 +53,7 @@ export default async function Page({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // Await the promise here
+  const { slug } = await params; 
   
   const project = await getProjectDetails(slug);
 

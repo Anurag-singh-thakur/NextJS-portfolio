@@ -3,8 +3,8 @@ import BlogDetailClient from './BlogDetailClient';
 import { Blog } from '@/app/types';
 
 export default async function BlogPage({ params }: { params: { slug: string } }) {
-  // Await the params to ensure they are resolved before using them
-  const { slug } = await params; // Await the params here
+  
+  const { slug } = await params; 
 
   const blog = await client.fetch(`*[_type == "blog" && slug.current == $slug][0]`, {
     slug: slug,
