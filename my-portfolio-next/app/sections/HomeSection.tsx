@@ -6,8 +6,6 @@ import { ArrowRight } from 'lucide-react';
 
 const HomeSection: React.FC = () => {
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-black text-center">
