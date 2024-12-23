@@ -14,21 +14,11 @@ interface Skill {
   _id: string;
   name: string;
   image: string;
-  category: string;
   description: string;
 }
 
-const categories = [
-  { name: 'Frontend', color: 'bg-blue-500' },
-  { name: 'Backend', color: 'bg-green-500' },
-  { name: 'Database', color: 'bg-yellow-500' },
-  { name: 'DevOps', color: 'bg-red-500' },
-  { name: 'Other', color: 'bg-purple-500' },
-];
-
 const SkillsSection: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
 
@@ -40,7 +30,6 @@ const SkillsSection: React.FC = () => {
             _id,
             name,
             image,
-            category,
             description
           }
         `);
@@ -53,10 +42,6 @@ const SkillsSection: React.FC = () => {
 
     fetchSkills();
   }, []);
-
-  const filteredSkills = selectedCategory
-    ? skills.filter(skill => skill.category === selectedCategory)
-    : skills;
 
   const openModal = (skill: Skill) => {
     setSelectedSkill(skill);
@@ -75,28 +60,12 @@ const SkillsSection: React.FC = () => {
           My Technical Skills
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 ">
-          {categories.map((category) => (
-            <button
-              key={category.name}
-              onClick={() => setSelectedCategory(category.name === selectedCategory ? null : category.name)}
-              className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 ${
-                selectedCategory === category.name
-                  ? `${category.color} text-white`
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
-
         <motion.div 
           layout
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"
         >
           <AnimatePresence>
-            {filteredSkills.map((skill) => (
+            {skills.map((skill) => (
               <motion.div
                 key={skill._id}
                 layout
@@ -120,9 +89,6 @@ const SkillsSection: React.FC = () => {
                   <h3 className="text-xs sm:text-sm font-semibold text-center text-white mb-1 sm:mb-2">
                     {skill.name}
                   </h3>
-                  <span className={`text-xs px-2 py-1 rounded-full ${categories.find(c => c.name === skill.category)?.color}`}>
-                    {skill.category}
-                  </span>
                 </div>
               </motion.div>
             ))}
@@ -148,16 +114,13 @@ const SkillsSection: React.FC = () => {
               <div className="flex items-center mb-4">
                 <Image
                   src={urlFor(selectedSkill.image).url()} 
-                  alt={selectedSkill.name} 
+                  alt={selectedSkill.name } 
                   className="w-16 h-16 object-contain mr-4"
                   height={128}
                   width={128}
                 />
                 <div>
                   <h3 className="text-xl font-bold text-white">{selectedSkill.name}</h3>
-                  <span className={`text-xs px-2 py-1 rounded-full ${categories.find(c => c.name === selectedSkill.category)?.color}`}>
-                    {selectedSkill.category}
-                  </span>
                 </div>
               </div>
               <p className="text-gray-300 mb-4">{selectedSkill.description}</p>
@@ -176,4 +139,3 @@ const SkillsSection: React.FC = () => {
 };
 
 export default SkillsSection;
-

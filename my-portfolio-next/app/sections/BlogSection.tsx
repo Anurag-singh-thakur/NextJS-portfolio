@@ -13,8 +13,8 @@ const builder = imageUrlBuilder(client)
 interface ImageSource {
   _id: string;
   asset: {
-    _ref: string;
-    _type: string;
+    ref: string;
+    type: string;
   };
 }
 

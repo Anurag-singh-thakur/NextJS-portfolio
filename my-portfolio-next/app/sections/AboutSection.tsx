@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState }  from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Github, Linkedin, Mail, ExternalLink, User, Briefcase, GraduationCap, MapPin } from 'lucide-react';
@@ -10,7 +10,6 @@ const AboutSection: React.FC = () => {
 
   return (
     <section className="min-h-screen bg-black py-10 sm:py-20 px-4 relative overflow-hidden">
-      {/* Animated background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div>
         <div className="absolute bottom-0 right-0 w-48 sm:w-96 h-48 sm:h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"></div>
