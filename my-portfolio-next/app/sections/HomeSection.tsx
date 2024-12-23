@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import {  ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 const HomeSection: React.FC = () => {
@@ -10,7 +10,6 @@ const HomeSection: React.FC = () => {
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-black">
-   
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container mx-auto px-4 py-16 lg:py-0">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -92,7 +91,7 @@ const HomeSection: React.FC = () => {
             </motion.div>
           </div>
         </div>
-      </div>
+    </div>
     </section>
   );
 };
