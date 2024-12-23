@@ -1,4 +1,4 @@
-import React , { useState }  from 'react';
+import React  from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Github, Linkedin, Mail, ExternalLink, User, Briefcase, GraduationCap, MapPin } from 'lucide-react';

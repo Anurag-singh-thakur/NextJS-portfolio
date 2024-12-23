@@ -27,7 +27,7 @@ const HomeSection: React.FC = () => {
               >
                 <h2 className="text-sm sm:text-base text-blue-400 font-medium mb-2">Welcome to my portfolio</h2>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-                  Hi, I'm{' '}
+                  Hi, I&apos;m 
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
                     Anurag Kumar
                   </span>
