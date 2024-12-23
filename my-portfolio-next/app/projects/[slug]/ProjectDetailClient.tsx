@@ -10,11 +10,7 @@ import {
   FaExternalLinkAlt,
   FaChevronLeft,
   FaChevronRight,
-  FaCode,
-  FaLaptopCode,
-  FaDatabase,
 } from 'react-icons/fa'
-import {SiJavascript, SiTypescript, SiNextdotjs, SiReact, SiNodedotjs} from 'react-icons/si'
 import imageUrlBuilder from '@sanity/image-url'
 import {client} from '@/sanityClient'
 import {Project} from '@/app/types'
@@ -25,48 +21,6 @@ function urlFor(source: any) {
   return builder.image(source)
 }
 
-const BACKGROUND_ICONS = [
-  {
-    icon: <FaCode size={60} />,
-    className: 'text-green-400 opacity-100',
-    position: {top: '10%', left: '5%'},
-  },
-  {
-    icon: <FaLaptopCode size={60} />,
-    className: 'text-blue-400 opacity-100',
-    position: {top: '10%', left: '5%'},
-  },
-  {
-    icon: <FaDatabase size={60} />,
-    className: 'text-red-400 opacity-100',
-    position: {top: '20%', left: '85%'},
-  },
-  {
-    icon: <SiJavascript size={60} />,
-    className: 'text-yellow-500 opacity-100',
-    position: {top: '50%', left: '15%'},
-  },
-  {
-    icon: <SiTypescript size={60} />,
-    className: 'text-blue-500 opacity-100',
-    position: {top: '60%', left: '85%'},
-  },
-  {
-    icon: <SiNextdotjs size={60} />,
-    className: 'text-black opacity-100',
-    position: {top: '70%', left: '5%'},
-  },
-  {
-    icon: <SiReact size={60} />,
-    className: 'text-cyan-400 opacity-100',
-    position: {top: '80%', left: '85%'},
-  },
-  {
-    icon: <SiNodedotjs size={60} />,
-    className: 'text-green-600 opacity-100',
-    position: {top: '90%', left: '15%'},
-  },
-]
 
 const floatingVariants = {
   initial: {y: 0},
@@ -115,25 +69,8 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
   return (
     <motion.div
       style={{scale, opacity}}
-      className="min-h-screen w-full bg-gradient-to-b from-[#1a202c] via-[#121212] to-[#0b0b0b] text-white relative overflow-hidden"
+      className="min-h-screen w-full bg-black overflow-hidden"
     >
-      {BACKGROUND_ICONS.map((item, index) => (
-        <motion.div
-          key={index}
-          variants={floatingVariants}
-          initial="initial"
-          animate="animate"
-          className={`absolute z-0 ${item.className}`}
-          style={{
-            top: `${Math.random() * 90}%`,
-            left: `${Math.random() * 90}%`,
-            fontSize: `${Math.random() * 4 + 3}rem`,
-          }}
-        >
-          {item.icon}
-        </motion.div>
-      ))}
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="relative mb-8">
           <Link href="/" className="inline-block text-white hover:text-primary transition-colors">
@@ -142,7 +79,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
               whileTap={{scale: 0.9}}
               className="flex items-center bg-secondary/20 px-4 py-2 rounded-full border border-secondary/30 hover:border-primary transition-all"
             >
-              <FaArrowLeft className="mr-2" />
+              <FaArrowLeft className="mr-2 " />
               <span className="text-sm font-medium"></span>
             </motion.div>
           </Link>
@@ -158,8 +95,6 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
         alt={`${project.title} - Image ${currentImageIndex + 1}`}
         layout="fill" 
         objectFit="cover"
-        height={128}
-        // width={128}
         className="absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110"
       />
     </div>

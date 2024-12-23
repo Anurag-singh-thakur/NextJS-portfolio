@@ -116,7 +116,7 @@ export default function BlogDetailClient({
       className="min-h-screen w-full bg-gradient-to-b from-[#1a202c] via-[#121212] to-[#0b0b0b] text-white relative overflow-hidden"
     >
       {/* Floating Background Icons */}
-      {BACKGROUND_ICONS.map((item, index) => (
+      {/* {BACKGROUND_ICONS.map((item, index) => (
         <motion.div
           key={index}
           variants={floatingVariants}
@@ -131,7 +131,7 @@ export default function BlogDetailClient({
         >
           {item.icon}
         </motion.div>
-      ))}
+      ))} */}
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="relative mb-8">
@@ -146,15 +146,11 @@ export default function BlogDetailClient({
             </motion.div>
           </Link>
         </div>
-
-        {/* Blog Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-neutral-200">
             {blog.title}
           </h1>
         </div>
-
-        {/* Image Gallery */}
         {blog.images && blog.images.length > 0 && (
           <div className="w-full max-w-4xl mx-auto mb-12 rounded-xl overflow-hidden shadow-2xl relative group">
             <div className="w-full h-[500px] relative">
@@ -166,8 +162,6 @@ export default function BlogDetailClient({
                 whileHover={{ scale: 1.1 }}
               />
             </div>
-
-            {/* Navigation Buttons */}
             {blog.images.length > 1 && (
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
                 <motion.button
@@ -198,8 +192,6 @@ export default function BlogDetailClient({
             )}
           </div>
         )}
-
-        {/* Blog Metadata */}
         <div className="flex justify-center space-x-6 text-neutral-400 mb-12">
           <div className="flex items-center">
             <FaUser className="mr-2" />
@@ -214,15 +206,11 @@ export default function BlogDetailClient({
             <span>{readTime} min read</span>
           </div>
         </div>
-
-        {/* Blog Content */}
         <div className="max-w-4xl mx-auto prose prose-invert">
           <div className="bg-secondary/20 p-8 rounded-xl border border-secondary/30 text-secondary/80 leading-relaxed">
             {blog.content}
           </div>
         </div>
-
-        {/* Tags */}
         {blog.tags && blog.tags.length > 0 && (
           <div className="max-w-4xl mx-auto mt-12">
             <h3 className="text-2xl font-semibold text-white mb-4 border-b border-secondary/30 pb-2">
