@@ -12,9 +12,7 @@ import {
   FaInstagram,
   FaDiscord,
   FaWhatsapp,
-  FaTelegram,
   FaPhone,
-  FaMapMarkerAlt,
   FaCode
 } from 'react-icons/fa'
 import { 
@@ -105,7 +103,6 @@ const ContactSection: React.FC = () => {
     message: ''
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
-  const [selectedContact, setSelectedContact] = useState<any>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -148,7 +145,7 @@ const ContactSection: React.FC = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-12 text-white"
+          className="text-4xl md:text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
         >
           Contact Me
         </motion.h2>
@@ -299,7 +296,7 @@ const ContactSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16"
         >
-          <h3 className="text-2xl font-semibold text-center mb-8">Connect With Me</h3>
+          <h3 className="text-2xl font-semibold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Connect With Me</h3>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 justify-items-center">
             {CONTACT_OPTIONS.map((contact, index) => (
               <motion.a

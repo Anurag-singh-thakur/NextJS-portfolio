@@ -9,7 +9,7 @@ import {calculateReadTime} from '../utils/readTime'
 import Image from 'next/image'
 const builder = imageUrlBuilder(client)
 
-function urlFor(source: any) {
+function urlFor(source: any | string) {
   return builder.image(source)
 }
 
@@ -43,7 +43,6 @@ export default function BlogSection() {
 
       setBlogs(blogsData)
 
-      // Initialize image indices
       const initialImageIndices = blogsData.reduce((acc: any, blog: Blog) => {
         acc[blog._id] = 0
         return acc
@@ -81,7 +80,7 @@ export default function BlogSection() {
         viewport={{once: true}}
         className="w-full max-w-6xl text-center relative z-10 mb-10"
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">Read My Blogs</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Read My Blogs</h2>
         <p className="text-lg text-gray-400">
           Explore my thoughts, tutorials, and insights on various topics.
         </p>
@@ -152,6 +151,8 @@ export default function BlogSection() {
                   <p className="text-gray-500 text-sm italic">{publishedDate}</p>
                   <Link
                     href={`/blog/${blog.slug.current}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
                     className="flex items-center mt-2 text-blue-400 hover:underline"
                   >
                     Read More <FaArrowRight className="ml-1" />

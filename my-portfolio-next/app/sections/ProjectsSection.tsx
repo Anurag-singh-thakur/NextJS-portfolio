@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { client } from '@/sanityClient';
 import { Project } from '../types';
 import { ProjectCard } from './ProjectCard';

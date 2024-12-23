@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
 
-function urlFor(source: any) {
+function urlFor(source: string) {
   return builder.image(source);
 }
 
@@ -66,7 +66,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
         <Image
           src={urlFor(project.images[currentImageIndex]).url()} 
           alt={`${project.title} - Image ${currentImageIndex + 1}`}
-          layout="fill"
+          fill 
           objectFit="cover"
           className="transition-transform duration-300 group-hover:scale-110"
         />

@@ -80,7 +80,7 @@ const AboutSection: React.FC = () => {
           >
             <div className="space-y-6">
               <div>
-                <p className="text-xl text-gray-400">Full Stack Developer|DSA|TypeScript|Next.JS </p>
+                <p className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Full Stack Developer | DSA | TypeScript | Next.JS </p>
               </div>
 
               <p className="text-gray-300 text-lg leading-relaxed">

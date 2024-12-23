@@ -6,14 +6,14 @@ import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
 const builder = imageUrlBuilder(client);
-function urlFor(source: any) {
+function urlFor(source: string) {
   return builder.image(source);
 }
 
 interface Skill {
   _id: string;
   name: string;
-  image: any;
+  image: string;
   category: string;
   description: string;
 }
@@ -71,11 +71,11 @@ const SkillsSection: React.FC = () => {
   return (
     <section id="skills" className="min-h-screen bg-black py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-white">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
           My Technical Skills
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 ">
           {categories.map((category) => (
             <button
               key={category.name}

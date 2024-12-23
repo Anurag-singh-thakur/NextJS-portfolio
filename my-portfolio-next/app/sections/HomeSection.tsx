@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Code, Laptop, Database, FileCode, Blocks, ArrowRight } from 'lucide-react';
+import {  ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 const HomeSection: React.FC = () => {

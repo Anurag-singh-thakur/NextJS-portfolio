@@ -1,13 +1,13 @@
-import { cn } from '../../app/lib/utils';
+import {cn} from '../../app/lib/utils'
 import {
   IconLayoutNavbarCollapse,
   IconHome2,
-  IconUser ,
+  IconUser,
   IconBrandCodepen,
   IconBriefcase,
   IconArticle,
   IconMailFast,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react'
 import {
   AnimatePresence,
   MotionValue,
@@ -15,70 +15,70 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-} from "framer-motion";
-import Link from "next/link";
-import { useRef, useState } from "react";
+} from 'framer-motion'
+import Link from 'next/link'
+import {useRef, useState} from 'react'
 
 export const NAVIGATION_ITEMS = [
   {
-    title: "Home",
+    title: 'Home',
     icon: <IconHome2 className="text-blue-400" />,
-    href: "/#home"
+    href: '/#home',
   },
   {
-    title: "About",
-    icon: <IconUser  className="text-green-400" />,
-    href: "/#about"
+    title: 'About',
+    icon: <IconUser className="text-green-400" />,
+    href: '/#about',
   },
   {
-    title: "Skills",
+    title: 'Skills',
     icon: <IconBrandCodepen className="text-purple-400" />,
-    href: "/#skills"
+    href: '/#skills',
   },
   {
-    title: "Projects",
+    title: 'Projects',
     icon: <IconBriefcase className="text-orange-400" />,
-    href: "/#projects"
+    href: '/#projects',
   },
   {
-    title: "Blogs",
+    title: 'Blogs',
     icon: <IconArticle className="text-red-400" />,
-    href: "/#blogs"
+    href: '/#blogs',
   },
   {
-    title: "Contact",
+    title: 'Contact',
     icon: <IconMailFast className="text-teal-400" />,
-    href: "/#contact"
-  }
-];
+    href: '/#contact',
+  },
+]
 
 export const FloatingDock = ({
   items = NAVIGATION_ITEMS,
   desktopClassName,
   mobileClassName,
 }: {
-  items?: { title: string; icon: React.ReactNode; href: string }[];
-  desktopClassName?: string;
-  mobileClassName?: string;
+  items?: {title: string; icon: React.ReactNode; href: string}[]
+  desktopClassName?: string
+  mobileClassName?: string
 }) => {
   return (
     <>
       <FloatingDockDesktop items={items} className={desktopClassName} />
       <FloatingDockMobile items={items} className={mobileClassName} />
     </>
-  );
-};
+  )
+}
 
 const FloatingDockMobile = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
-  className?: string;
+  items: {title: string; icon: React.ReactNode; href: string}[]
+  className?: string
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   return (
-    <div className={cn("relative block md:hidden", className)}>
+    <div className={cn('relative block md:hidden', className)}>
       <AnimatePresence>
         {open && (
           <motion.div
@@ -88,7 +88,7 @@ const FloatingDockMobile = ({
             {items.map((item, idx) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{opacity: 0, y: 10}}
                 animate={{
                   opacity: 1,
                   y: 0,
@@ -100,7 +100,7 @@ const FloatingDockMobile = ({
                     delay: idx * 0.05,
                   },
                 }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                transition={{delay: (items.length - 1 - idx) * 0.05}}
               >
                 <Link
                   href={item.href}
@@ -121,32 +121,32 @@ const FloatingDockMobile = ({
         <IconLayoutNavbarCollapse className="h-5 w-5 text-white" />
       </button>
     </div>
-  );
-};
+  )
+}
 
 const FloatingDockDesktop = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
-  className?: string;
+  items: {title: string; icon: React.ReactNode; href: string}[]
+  className?: string
 }) => {
-  let mouseX = useMotionValue(Infinity);
+  const mouseX = useMotionValue(Infinity)
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "fixed top-4 left-1/2 transform -translate-x-1/2 flex justify-center h-16 gap-4 items-center bg-black bg-opacity-70 backdrop-blur-lg border border-gray-700 shadow-2xl px-4 pb-3 z-50 rounded-full",
-        className
+        'fixed top-4 left-1/2 transform -translate-x-1/2 flex justify-center h-16 gap-4 items-center bg-black bg-opacity-70 backdrop-blur-lg border border-gray-700 shadow-2xl px-4 pb-3 z-50 rounded-full',
+        className,
       )}
     >
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
       ))}
     </motion.div>
-  );
-};
+  )
+}
 
 function IconContainer({
   mouseX,
@@ -154,64 +154,60 @@ function IconContainer({
   icon,
   href,
 }: {
-  mouseX: MotionValue;
-  title: string;
-  icon: React.ReactNode;
-  href: string;
+  mouseX: MotionValue
+  title: string
+  icon: React.ReactNode
+  href: string
 }) {
-  let ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? {x: 0, width: 0}
 
-    return val - bounds.x - bounds.width / 2;
-  });
+    return val - bounds.x - bounds.width / 2
+  })
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40])
+  const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40])
 
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  let heightTransformIcon = useTransform(
-    distance,
-    [-150, 0, 150],
-    [20, 40, 20]
-  );
+  const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20])
+  const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20])
 
-  let width = useSpring(widthTransform, {
+  const width = useSpring(widthTransform, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
-  });
-  let height = useSpring(heightTransform, {
+  })
+  const height = useSpring(heightTransform, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
-  });
+  })
 
-  let widthIcon = useSpring(widthTransformIcon, {
+  const widthIcon = useSpring(widthTransformIcon, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
-  });
-  let heightIcon = useSpring(heightTransformIcon, {
+  })
+  const heightIcon = useSpring(heightTransformIcon, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
-  });
+  })
 
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState(false)
 
   return (
     <Link href={href}>
       <motion.div
         ref={ref}
-        style={{ width, height }}
+        style={{width, height}}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className="aspect-square rounded-full bg-gray-800 flex flex-col items-center justify-center relative"
       >
         <motion.div
-          style={{ width: widthIcon, height: heightIcon }}
+          style={{width: widthIcon, height: heightIcon}}
           className="flex items-center justify-center text-white"
         >
           {icon}
@@ -219,9 +215,9 @@ function IconContainer({
         <AnimatePresence>
           {hovered && (
             <motion.div
-              initial={{ opacity: 0, y: 0, x: "-50%" }}
-              animate={{ opacity: 1, y: -40, x: "-50%" }}
-              exit={{ opacity: 0, y: 0, x: "-50%" }}
+              initial={{opacity: 0, y: 0, x: '-50%'}}
+              animate={{opacity: 1, y: -40, x: '-50%'}}
+              exit={{opacity: 0, y: 0, x: '-50%'}}
               className="px-2 py-0.5 whitespace-pre rounded-md bg-black bg-opacity-80 border border-gray-700 text-white absolute left-1/2 -translate-x-1/2 -top-10 w-fit text-xs"
             >
               {title}
@@ -230,5 +226,5 @@ function IconContainer({
         </AnimatePresence>
       </motion.div>
     </Link>
-  );
+  )
 }

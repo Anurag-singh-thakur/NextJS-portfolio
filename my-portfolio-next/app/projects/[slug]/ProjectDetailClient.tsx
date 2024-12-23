@@ -1,5 +1,4 @@
 'use client'
-
 import React, {useState} from 'react'
 import {motion, useTransform, useScroll} from 'framer-motion'
 import Link from 'next/link'
@@ -17,24 +16,10 @@ import {Project} from '@/app/types'
 
 const builder = imageUrlBuilder(client)
 
-function urlFor(source: any) {
+function urlFor(source: any|string) {
   return builder.image(source)
 }
 
-
-const floatingVariants = {
-  initial: {y: 0},
-  animate: {
-    y: [0, -20, 0],
-    transition: {
-      y: {
-        repeat: Infinity,
-        repeatType: 'loop',
-        duration: 3,
-      },
-    },
-  },
-}
 
 export default function ProjectDetailClient({initialProject}: {initialProject: Project | null}) {
   const [project, setProject] = React.useState<Project | null>(initialProject)
@@ -93,27 +78,28 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
       <Image
         src={urlFor(project.images[currentImageIndex]).url()} 
         alt={`${project.title} - Image ${currentImageIndex + 1}`}
-        layout="fill" 
+        fill 
         objectFit="cover"
         className="absolute top-0 left-0 transition-transform duration-300 group-hover:scale-110"
       />
     </div>
 
-            {/* Navigation Buttons */}
+            
             {project.images.length > 1 && (
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
                 <motion.button
+                
                  onClick={()=>handlePrevImage(project.images||[])}
                   whileHover={{scale: 1.1}}
                   whileTap={{scale: 0.9}}
                   className="bg-secondary/20 text-secondary/80 hover:text-primary 
                              p-3 rounded-full border border-secondary/30 hover:border-primary 
-                             transition-all z-10"
+                             transition-all z-10 bg-gray-300"
                 >
                   <FaChevronLeft />
                 </motion.button>
 
-                <span className="text-neutral-300 text-sm">
+                <span className="text-blue-900 text-lg font-bold">
                   {currentImageIndex + 1} / {project.images.length}
                 </span>
 
@@ -123,7 +109,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
                   whileTap={{scale: 0.9}}
                   className="bg-secondary/20 text-secondary/80 hover:text-primary 
                              p-3 rounded-full border border-secondary/30 hover:border-primary 
-                             transition-all z-10"
+                             transition-all z-10 bg-gray-300"
                 >
                   <FaChevronRight />
                 </motion.button>
@@ -131,8 +117,6 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
             )}
           </div>
         )}
-
-        {/* Project Links */}
         <div className="flex justify-center space-x-4 mb-12">
           {project.githubLink && (
             <motion.a
@@ -141,11 +125,11 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
               rel="noopener noreferrer"
               className="bg-secondary/20 text-secondary/80 hover:text-primary 
                          px-6 py-3 rounded-md text-sm flex items-center 
-                         border border-secondary/30 hover:border-primary transition-all"
+                         border border-secondary/30 hover:border-primary transition-all bg-gray-300"
               whileHover={{scale: 1.05}}
               whileTap={{scale: 0.95}}
             >
-              <FaGithub className="mr-2" /> GitHub
+              <FaGithub className="mr-2" />Github 
             </motion.a>
           )}
           {project.liveLink && (
@@ -155,7 +139,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
               rel="noopener noreferrer"
               className="bg-secondary/20 text-secondary/80 hover:text-primary 
                          px-6 py-3 rounded-md text-sm flex items-center 
-                         border border-secondary/30 hover:border-primary transition-all"
+                         border border-secondary/30 hover:border-primary transition-all bg-gray-300"
               whileHover={{scale: 1.05}}
               whileTap={{scale: 0.95}}
             >
@@ -171,10 +155,8 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
             <h2 className="text-2xl font-semibold text-white mb-4 border-b border-secondary/30 pb-2">
               Description
             </h2>
-            <p className="text-secondary/80 leading-relaxed">{project.description}</p>
+            <p className="text-secondary/80 leading-relaxed text-white">{project.description}</p>
           </div>
-
-          {/* Technologies */}
           {project.technologies && project.technologies.length > 0 && (
             <div className="bg-secondary/20 p-8 rounded-xl border border-secondary/30">
               <h2 className="text-2xl font-semibold text-white mb-4 border-b border-secondary/30 pb-2">
@@ -185,7 +167,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
                   <span
                     key={index}
                     className="bg-secondary/30 text-secondary/80 px-4 py-2 rounded-full text-sm 
-                               border border-secondary/40 hover:border-primary transition-all"
+                               border border-secondary/40 hover:border-primary transition-all text-white"
                   >
                     {tech}
                   </span>
@@ -193,16 +175,14 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
               </div>
             </div>
           )}
-
-          {/* Features */}
           {project.features && project.features.length > 0 && (
             <div className="bg-secondary/20 p-8 rounded-xl border border-secondary/30">
               <h2 className="text-2xl font-semibold text-white mb-4 border-b border-secondary/30 pb-2">
                 Key Features
               </h2>
-              <ul className="list-disc list-inside text-secondary/80 space-y-2">
+              <ul className="list-disc list-inside text-secondary/80 space-y-2 text-white">
                 {project.features.map((feature, index) => (
-                  <li key={index} className="pl-2 hover:text-primary transition-colors">
+                  <li key={index} className="pl-2 hover:text-primary transition-colors text-white">
                     {feature}
                   </li>
                 ))}
@@ -218,7 +198,7 @@ export default function ProjectDetailClient({initialProject}: {initialProject: P
               </h2>
               <ul className="list-disc list-inside text-secondary/80 space-y-2">
                 {project.challenges.map((challenge, index) => (
-                  <li key={index} className="pl-2 hover:text-primary transition-colors">
+                  <li key={index} className="pl-2  text-white hover:text-primary transition-colors">
                     {challenge}
                   </li>
                 ))}
