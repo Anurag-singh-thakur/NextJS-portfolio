@@ -1,11 +1,10 @@
 'use client'
 
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion} from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const HomeSection: React.FC = () => {
-  const { scrollYProgress } = useScroll();
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-black text-center">
