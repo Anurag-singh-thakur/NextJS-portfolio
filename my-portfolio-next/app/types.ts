@@ -22,9 +22,19 @@ export interface Blog {
   };
   description: string; 
   content: string; 
-  images?: string[]; 
+  images?: Blogimage[]; 
   author: string; 
   publishedAt: string; 
   tags?: string[]; 
   readTime?: number; 
 }
+
+export interface Blogimage{
+  asset:{
+    _id:string,
+    url:string
+  };
+  _id:string
+  
+}
+  
